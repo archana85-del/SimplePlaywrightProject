@@ -7,11 +7,16 @@ import { DeliveryPage } from '../pages/DeliveryPage';
 import { PaymentOption, PaymentPage } from '../pages/PaymentPage';
 import { OrderConfirmationPage } from '../pages/OrderConfirmationPage';
 import { MyAccountPage } from '../pages/MyAccountPage';
+import * as dotenv from 'dotenv';   
+dotenv.config({path:'./testdata/.env'});
 
 test('has title', async ({ page }) => {
   const productName = 'Samsung Galaxy S24';
-  await page.goto('https://senthilsmartqahub.blogspot.com/2026/03/online-mobile-store.html');
+  //await page.goto('https://senthilsmartqahub.blogspot.com/2026/03/online-mobile-store.html');
   
+    console.log("Online Mobile Store URL from .env file: " + process.env.onlineMobileStoreUrl);
+    const url = process.env.onlineMobileStoreUrl as string;
+  await page.goto(url);
    const onlineMobileStorePage = new OnlineMobileStorePage(page); 
   await onlineMobileStorePage.clickImage();
 
@@ -45,6 +50,8 @@ const ecommercePage = new EcommercePage(page);
 
 const myAccountPage = new MyAccountPage(page);
 console.log(await myAccountPage.getAllAccountDetails());
+
+
 
 
 });
