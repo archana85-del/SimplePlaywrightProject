@@ -1,0 +1,6 @@
+firstName,lastName,emailAddress,mobileNumber,shippingAddress,billingAddress,productName
+ABC,DEF,archana1@test.com,9251111111,Pleasanton CA,Pleasanton CA,iPhone 15 Pro
+Rahul,Sharma,rahul.sharma@test.com,9252222222,Dublin CA,Dublin CA,Samsung Galaxy S24
+Anita,Reddy,anita.reddy@test.com,9253333333,San Ramon CA,San Ramon CA,Samsung Galaxy S24
+Kiran,Patel,kiran.patel@test.com,9254444444,test1 street CA,test2 street CA,Samsung Galaxy S24
+Meena,Kumar,meena.kumar@test.com,9255555555,mac street CA,test street CA,iPhone 15 Pro
