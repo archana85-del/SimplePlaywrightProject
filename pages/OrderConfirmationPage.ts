@@ -15,11 +15,11 @@ export class OrderConfirmationPage{
         await expect(this.page).toHaveTitle('order-confirmation');
         }
 
-        async checkifOrderConfirmationMessageDisplayed(): Promise<boolean> {
-
-        const confirmationMessage = this.page.getByRole('heading', { name: 'Your Order is Confirmed!' })
+        async checkifOrderConfirmationMessageDisplayed(){
+            const confirmationMessage = await this.page.locator("div[class='container'] h1").textContent();
+            expect(confirmationMessage).toBe('Your Order is Confirmed!');
+        //const confirmationMessage = this.page.getByRole('heading', { name: 'Your Order is Confirmed!' })
         //return await confirmationMessage.isVisible();
-        return true;
         }
 
         async clickMyAccount(){

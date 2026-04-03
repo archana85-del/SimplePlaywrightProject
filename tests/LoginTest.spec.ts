@@ -39,8 +39,8 @@ const ecommercePage = new EcommercePage(page);
   await paymentPage.clickPayNow();
 
   const orderConfirmationPage = new OrderConfirmationPage(page);
-  const isConfirmationMessageDisplayed = await orderConfirmationPage.checkifOrderConfirmationMessageDisplayed();
-   expect(isConfirmationMessageDisplayed).toBe(true);
+  await orderConfirmationPage.checkifOrderConfirmationMessageDisplayed();
+  
   orderConfirmationPage.clickMyAccount();
 
 const myAccountPage = new MyAccountPage(page);
