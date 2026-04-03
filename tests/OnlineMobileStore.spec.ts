@@ -40,50 +40,82 @@ test('place orders for all rows from csv', async ({ page }) => {
     console.log('Running test for:', user.firstName, user.lastName);
     console.log('Product:', user.productName);
 
-    await page.goto(url);
+    await test.step(`Open online mobile store for ${user.firstName} ${user.lastName}`, async () => {
+      await page.goto(url);
+    });
 
     const onlineMobileStorePage = new OnlineMobileStorePage(page);
-    await onlineMobileStorePage.clickImage();
+
+    await test.step('Open e-commerce page from online mobile store', async () => {
+      await onlineMobileStorePage.clickImage();
+    });
 
     const ecommercePage = new EcommercePage(page);
-    await ecommercePage.selectProduct(user.productName);
+
+    await test.step(`Select product: ${user.productName}`, async () => {
+      await ecommercePage.selectProduct(user.productName);
+    });
 
     const productDetailPage = new ProductDetailPage(page);
-    await productDetailPage.verifyProductPageTitle();
-    await productDetailPage.verifyProductName(user.productName);
-    await productDetailPage.clickAddToCart();
+
+    await test.step('Verify product details page and add product to cart', async () => {
+      await productDetailPage.verifyProductPageTitle();
+      await productDetailPage.verifyProductName(user.productName);
+      await productDetailPage.clickAddToCart();
+    });
 
     const basketPage = new BasketPage(page);
-    const isInCart = await basketPage.isProductInCart(user.productName);
-    expect(isInCart).toBe(true);
 
-    console.log(`Price of product in cart: ${await basketPage.getProductPrice(user.productName)}`);
-    console.log(`Total price in cart: ${await basketPage.getTotalPrice()}`);
+    await test.step('Verify product in basket and review price details', async () => {
+      const isInCart = await basketPage.isProductInCart(user.productName);
+      expect(isInCart).toBe(true);
 
-    await basketPage.clickContinue();
+      console.log(`Price of product in cart: ${await basketPage.getProductPrice(user.productName)}`);
+      console.log(`Total price in cart: ${await basketPage.getTotalPrice()}`);
+    });
+
+    await test.step('Continue from basket to delivery page', async () => {
+      await basketPage.clickContinue();
+    });
 
     const deliveryPage = new DeliveryPage(page);
-    await deliveryPage.fillDeliveryForm(
-      user.firstName,
-      user.lastName,
-      user.mobileNumber,
-      user.emailAddress,
-      user.shippingAddress,
-      user.billingAddress
-    );
-    await deliveryPage.clickConfirmProceed();
+
+    await test.step('Fill delivery form and proceed', async () => {
+      await deliveryPage.fillDeliveryForm(
+        user.firstName,
+        user.lastName,
+        user.mobileNumber,
+        user.emailAddress,
+        user.shippingAddress,
+        user.billingAddress
+      );
+      await deliveryPage.clickConfirmProceed();
+    });
 
     const paymentPage = new PaymentPage(page);
-    await paymentPage.choosePaymentMethod(PaymentOption.GPay);
-    await paymentPage.clickPayNow();
+
+    await test.step('Choose payment method and complete payment', async () => {
+      await paymentPage.choosePaymentMethod(PaymentOption.GPay);
+      await paymentPage.clickPayNow();
+    });
 
     const orderConfirmationPage = new OrderConfirmationPage(page);
-    await orderConfirmationPage.checkifOrderConfirmationMessageDisplayed();
-    await orderConfirmationPage.clickMyAccount();
+
+    await test.step('Verify order confirmation and open My Account page', async () => {
+      await orderConfirmationPage.checkifOrderConfirmationMessageDisplayed();
+      await orderConfirmationPage.clickMyAccount();
+    });
 
     const myAccountPage = new MyAccountPage(page);
-    const accountDetails = await myAccountPage.getAllAccountDetails();
-    console.log('My Account Details:', accountDetails);
+
+    await test.step('Get and print My Account details', async () => {
+      const accountDetails = await myAccountPage.getAllAccountDetails();
+      console.log('My Account Details:', accountDetails);
+    });
+
+    await test.step('Logout from My Account', async () => {
+      await myAccountPage.clickLogout();
+    });
 
     console.log('-----------------------------------------');
   }
