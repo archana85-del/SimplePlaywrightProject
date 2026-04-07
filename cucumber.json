@@ -1,0 +1,22 @@
+{
+  "default": {
+    "require": [
+      "src/steps/*.ts",
+      "src/support/*.ts"
+    ],
+    "paths": [
+      "src/features/*.feature"
+    ],
+    "requireModule": [
+      "ts-node/register"
+    ],
+    "format": [
+      "progress",
+      "summary",
+      "html:reports/cucumber-report.html",
+      "json:reports/cucumber-report.json"
+    ],
+    "publishQuiet": true,
+    "parallel": 1
+  }
+}

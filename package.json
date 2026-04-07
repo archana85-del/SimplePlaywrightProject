@@ -1,19 +1,24 @@
 {
-  "name": "simpleplayscriptproject",
+  "name": "cucumbertest1",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:cucumber": "cucumber-js --config cucumber.json --publish-quiet"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "devDependencies": {
-    "@playwright/test": "^1.59.1",
-    "@types/node": "^25.5.0",
-    "dotenv": "^17.4.0"
-  },
   "dependencies": {
-    "csv-parse": "^6.2.1"
+    "@cucumber/cucumber": "^12.7.0",
+    "@playwright/test": "^1.59.1",
+    "playwright": "^1.59.1",
+    "dotenv": "^16.6.1",
+    "csv-parse": "^5.6.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }

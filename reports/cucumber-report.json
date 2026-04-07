@@ -1,0 +1,84 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "place-orders-from-csv-data;place-orders-for-all-rows-from-csv",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Place orders for all rows from csv",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 525944166
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I load the user details from the csv file",
+            "match": {
+              "location": "src/steps/place-orders.ts:18"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4225915
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I place orders for each user from the csv data",
+            "match": {
+              "location": "src/steps/place-orders.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7250700749
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "all orders should be placed successfully",
+            "match": {
+              "location": "src/steps/place-orders.ts:96"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 913916
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 136796040
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login",
+            "line": 2
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "place-orders-from-csv-data",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Place orders from CSV data",
+    "tags": [],
+    "uri": "src/features/place-orders.feature"
+  }
+]
